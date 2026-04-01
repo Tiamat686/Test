@@ -1,0 +1,520 @@
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Игорь Кирилин | Финансовый директор | Резюме</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f7fc;
+      color: #1e293b;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* Современный градиентный заголовок с прозрачностью текста */
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 3rem 1rem 2rem;
+      background: linear-gradient(135deg, #0b2b3b 0%, #123e52 50%, #0f2c3a 100%);
+      border-radius: 2rem;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+    }
+
+    .hero-name {
+      font-size: clamp(2.2rem, 7vw, 4rem);
+      font-weight: 800;
+      background: linear-gradient(120deg, #FFFFFF, #B9E6FF, #6BCBFF);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.2rem;
+      color: #cbd5e6;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 0.8rem;
+    }
+
+    .hero-tagline span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(4px);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+    }
+
+    /* Карточки навыков с анимацией при наведении */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .skill-card {
+      background: white;
+      padding: 1rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      border: 1px solid #e2edf2;
+      transition: all 0.3s ease;
+      cursor: default;
+      backdrop-filter: blur(2px);
+      color: #0f3b4c;
+    }
+    .skill-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      background: linear-gradient(145deg, #ffffff, #f0f9ff);
+      border-color: #2c9cd4;
+      box-shadow: 0 15px 25px -12px rgba(28, 125, 180, 0.25);
+      color: #106a8f;
+    }
+
+    /* Сетка инструментов в виде тегов */
+    .tools-tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin: 1.8rem 0 1rem;
+    }
+    .tools-tag {
+      background: #eef2ff;
+      padding: 0.4rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #1e4a76;
+      transition: all 0.2s;
+      border-left: 3px solid #2c9cd4;
+    }
+    .tools-tag:hover {
+      background: #2c9cd4;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* акцентные элементы и визуальная иерархия */
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 2rem 0 1.2rem 0;
+      position: relative;
+      display: inline-block;
+      background: linear-gradient(135deg, #1e2a3a, #1b4f6e);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50%;
+      height: 3px;
+      background: linear-gradient(90deg, #2c9cd4, #6bcbff);
+      border-radius: 3px;
+    }
+
+    .job-card, .case-block {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+      border: 1px solid #eef2f8;
+      transition: all 0.25s;
+    }
+    .job-card:hover {
+      border-color: #cbe5fe;
+      box-shadow: 0 15px 30px -12px rgba(0, 80, 100, 0.1);
+    }
+
+    /* выделенные блоки кейсов */
+    .case-block {
+      background: linear-gradient(120deg, #fefefe, #f8fafd);
+      border-left: 5px solid #2c9cd4;
+      border-radius: 1rem;
+      margin: 1rem 0;
+    }
+    .case-title {
+      font-weight: 800;
+      color: #0b4f6c;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+    .case-title i {
+      color: #2c9cd4;
+      font-size: 1.3rem;
+    }
+
+    .company-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: baseline;
+      margin-bottom: 0.8rem;
+      border-bottom: 1px dashed #e2e8f0;
+      padding-bottom: 0.5rem;
+    }
+    .company-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #0f2b38;
+    }
+    .date {
+      font-weight: 500;
+      color: #5a7a8c;
+      font-size: 0.85rem;
+    }
+    .position {
+      font-weight: 600;
+      color: #1f6e8c;
+      margin: 0.6rem 0;
+      font-size: 1rem;
+    }
+    .achievements {
+      margin-top: 0.8rem;
+      padding-left: 1.2rem;
+    }
+    .achievements li {
+      margin-bottom: 0.5rem;
+    }
+    .grid-2col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      background: #ffffffcc;
+      backdrop-filter: blur(4px);
+      border-radius: 1.5rem;
+      padding: 1.2rem 1.8rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e2edf2;
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+    .info-item i {
+      width: 1.8rem;
+      color: #2c9cd4;
+      font-size: 1.2rem;
+    }
+
+    /* адаптивность */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      .hero {
+        padding: 1.8rem 1rem;
+      }
+      .company-header {
+        flex-direction: column;
+        gap: 6px;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .info-row {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .skill-card {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    .badge-accent {
+      background: #eaf9ff;
+      border-radius: 40px;
+      padding: 0.2rem 0.9rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #0c6b8f;
+      display: inline-block;
+    }
+    .contact-buttons {
+      margin-top: 0.5rem;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #dce5ec;
+      color: #5f7f90;
+      font-size: 0.8rem;
+    }
+    .language-tag, .driving-tag {
+      background: #ecfdf5;
+      padding: 0.2rem 1rem;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- Герой с градиентным прозрачным текстом -->
+  <div class="hero">
+    <div class="hero-name">Кирилин Игорь Александрович</div>
+    <div class="hero-tagline">
+      <span><i class="fas fa-chart-line"></i> Финансовый директор / Заместитель финансового директора</span>
+      <span><i class="fas fa-coins"></i> 20+ лет опыта</span>
+    </div>
+  </div>
+
+  <!-- Контактная информация + личные данные -->
+  <div class="info-row">
+    <div class="info-item"><i class="fas fa-phone-alt"></i> +7 (926) 2641204 — предпочитаемый способ связи</div>
+    <div class="info-item"><i class="fas fa-envelope"></i> i.a.kirilin@gmail.com</div>
+    <div class="info-item"><i class="fas fa-map-marker-alt"></i> Москва, Россия</div>
+    <div class="info-item"><i class="fas fa-passport"></i> Гражданство: Россия, разрешение на работу: РФ</div>
+    <div class="info-item"><i class="fas fa-plane"></i> Готов к переезду, командировкам</div>
+  </div>
+
+  <!-- Желаемая позиция и специализации -->
+  <div style="background: linear-gradient(115deg, #ffffff, #fbfefe); border-radius: 1.2rem; padding: 1.2rem 1.8rem; margin-bottom: 1rem; border: 1px solid #dceef5;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+      <div>
+        <h3 style="font-weight: 800; font-size: 1.4rem; color: #114e66;">Финансовый директор / Заместитель финансового директора</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;">
+          <span class="badge-accent"><i class="fas fa-chart-pie"></i> Финансовый аналитик</span>
+          <span class="badge-accent"><i class="fas fa-chart-line"></i> Инвестиционный аналитик</span>
+          <span class="badge-accent"><i class="fas fa-briefcase"></i> Финансовый контролер</span>
+          <span class="badge-accent"><i class="fas fa-chart-simple"></i> Экономист</span>
+        </div>
+      </div>
+      <div>
+        <div><i class="fas fa-calendar-check"></i> Полная занятость · На месте / Гибрид</div>
+        <div><i class="fas fa-hourglass-half"></i> Желательное время в пути: не имеет значения</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Карточки навыков (навыки с анимацией) -->
+  <div>
+    <div class="section-title">Ключевые компетенции</div>
+    <div class="skills-grid">
+      <div class="skill-card">Финансовый анализ</div>
+      <div class="skill-card">Управленческий учет</div>
+      <div class="skill-card">Инвестиционный анализ</div>
+      <div class="skill-card">Бюджетирование (BDR/BDDS)</div>
+      <div class="skill-card">МСФО / Big4 аудит</div>
+      <div class="skill-card">Денежный поток & ликвидность</div>
+      <div class="skill-card">Финансовое моделирование</div>
+      <div class="skill-card">KPI & ROI-аналитика</div>
+    </div>
+  </div>
+
+  <!-- Сетка инструментов в виде тегов -->
+  <div>
+    <div class="section-title">Инструменты & технологии</div>
+    <div class="tools-tag-cloud">
+      <span class="tools-tag">MS Excel (продвинутый)</span>
+      <span class="tools-tag">Power BI</span>
+      <span class="tools-tag">MS SQL</span>
+      <span class="tools-tag">1С</span>
+      <span class="tools-tag">Axapta</span>
+      <span class="tools-tag">Бит.Финанс</span>
+      <span class="tools-tag">SQL Server</span>
+      <span class="tools-tag">Python (базовый анализ)</span>
+    </div>
+  </div>
+
+  <!-- Опыт работы с примерами кейсов в выделенных блоках -->
+  <div>
+    <div class="section-title">Опыт работы · 20 лет 5 месяцев</div>
+    
+    <!-- Кейс 1: группа Denum -->
+    <div class="job-card">
+      <div class="company-header">
+        <span class="company-name"><i class="fas fa-building"></i> группа компаний Denum (МФО Мигкредит)</span>
+        <span class="date">Май 2018 — настоящее время · 7 лет 11 месяцев</span>
+      </div>
+      <div class="position">Руководитель департамента отчётности и бюджетирования</div>
+      <div class="case-block">
+        <div class="case-title"><i class="fas fa-trophy"></i> Кейс: Прозрачность ROI и стратегические инициативы</div>
+        <div>Разработал систему KPI и финансовых показателей для оценки эффективности бизнес-инициатив (запуск продуктов, открытие офисов), обеспечив полную прозрачность ROI и поддержку решений Совета директоров.</div>
+      </div>
+      <div class="case-block">
+        <div class="case-title"><i class="fas fa-chart-line"></i> Кейс: Модель денежного потока в условиях ограниченного финансирования</div>
+        <div>Построил прогнозную модель CF, повысившую предсказуемость ликвидности и обоснованность решений в условиях жёсткого доступа к капиталу.</div>
+      </div>
+      <ul class="achievements">
+        <li>✅ Успешное прохождение аудита головной компании (Кипр) за 2015–2023, согласование годовых отчётов.</li>
+        <li>✅ Организация открытия/закрытия счетов иностранной компании в юрисдикциях РФ и Кипра.</li>
+        <li>✅ Управленческая отчётность (BS, PL, CF) по группе, презентация руководству и кредиторам.</li>
+        <li>✅ Внедрение учётной политики управленческого учёта, стандартизация процессов.</li>
+        <li>✅ Контроль бюджетного процесса, план-факт анализ, проверка платежей до 200 млн руб./мес.</li>
+        <li>✅ Подготовка годовой отчётности по МСФО, взаимодействие с Big4.</li>
+        <li>✅ Управление ИТ-проектами: внедрение ПО для бюджетирования и финансового контроля.</li>
+      </ul>
+    </div>
+
+    <!-- Опыт: Меркурий Сити Тауэр -->
+    <div class="job-card">
+      <div class="company-header">
+        <span class="company-name"><i class="fas fa-city"></i> ГК "Меркурий Сити Тауэр" (девелопмент)</span>
+        <span class="date">Апрель 2014 — Март 2018 · 4 года</span>
+      </div>
+      <div class="position">Финансовый менеджер</div>
+      <div class="case-block">
+        <div class="case-title"><i class="fas fa-file-excel"></i> Кейс: Удобная финансовая модель в Excel</div>
+        <div>Создал удобную для расчётов финансовую модель и квартальную презентацию для Совета директоров, повысив скорость принятия решений.</div>
+      </div>
+      <ul class="achievements">
+        <li>Ведение управленческого учёта (Бит.Финанс, Excel), бюджетирование, план-факт анализ.</li>
+        <li>Платёжный календарь, недопущение кассовых разрывов.</li>
+        <li>Разработка финансовой модели для банка, акционеров, головной компании.</li>
+        <li>Контроль банковских ковенант, взаимодействие с аудиторами, страховщиками.</li>
+      </ul>
+    </div>
+
+    <!-- СИНЕМА ПАРК + другие блоки кратко, но с выделенными достижениями -->
+    <div class="job-card">
+      <div class="company-header">
+        <span class="company-name"><i class="fas fa-film"></i> СИНЕМА ПАРК, ЗАО</span>
+        <span class="date">Февраль 2012 — Декабрь 2013 · 1 год 11 месяцев</span>
+      </div>
+      <div class="position">Финансовый менеджер</div>
+      <div class="case-block">
+        <div class="case-title"><i class="fas fa-chart-simple"></i> Кейс: Инвестиционный анализ проектов</div>
+        <div>Расчёт NPV, PI, IRR, анализ эффективности акций и договоров, проверка тендерной документации, сопровождение валютных контрактов.</div>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="company-header">
+        <span class="company-name"><i class="fas fa-laptop-code"></i> ООО "Си Ти Ай" (ИТ-консалтинг)</span>
+        <span class="date">Июль 2011 — Февраль 2012 · 8 месяцев</span>
+      </div>
+      <div class="position">Финансовый контролер</div>
+      <ul class="achievements">
+        <li>Создал базу данных по кредитам, %, факторингу, крупным контрагентам в Excel.</li>
+        <li>Перевод зарплатного проекта в другой банк, ведение БДДС, P&L, CF.</li>
+        <li>Финансовое планирование, контроль, осуществление платежей (4 банка, валютные операции).</li>
+      </ul>
+    </div>
+
+    <div class="job-card">
+      <div class="company-header">
+        <span class="company-name"><i class="fas fa-hotel"></i> ООО "Славянская гостиница и Деловой центр"</span>
+        <span class="date">Октябрь 2006 — Июль 2011 · 4 года 10 месяцев</span>
+      </div>
+      <div class="position">Финансовый менеджер</div>
+      <div class="case-block">
+        <div class="case-title"><i class="fas fa-charging-station"></i> Кейс: Система тарифов и отчетность за телематику</div>
+        <div>Разработал и внедрил новую систему тарифов для арендаторов, создал форму отчетности за телематические услуги.</div>
+      </div>
+      <ul class="achievements">
+        <li>Создал систему учёта платежей от клиентов, улучшил рентабельность услуг.</li>
+        <li>Планирование, бюджетирование, БДДС, платежный календарь.</li>
+      </ul>
+    </div>
+
+    <div class="job-card">
+      <div class="company-header">
+        <span class="company-name"><i class="fas fa-chart-line"></i> ГК Евротраст-лизинг</span>
+        <span class="date">Июнь 2005 — Август 2006 · 1 год 3 месяца</span>
+      </div>
+      <div class="position">Экономист</div>
+      <ul class="achievements">
+        <li>Оперативный финансовый учёт, БДДС, обработка выписок, контроль дебиторской/кредиторской задолженности.</li>
+        <li>АФХД лизингополучателей, взаимодействие с банками, составление отчетности для руководства.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Образование и курсы -->
+  <div>
+    <div class="section-title">Образование & Повышение квалификации</div>
+    <div class="grid-2col">
+      <div class="job-card" style="margin-bottom:0;">
+        <div><i class="fas fa-graduation-cap"></i> <strong>МГУ им. М.В. Ломоносова</strong> — MBA, Экономика и управление предприятием (2019)</div>
+        <div style="margin-top: 1rem;"><i class="fas fa-university"></i> <strong>Финансовый университет при Правительстве РФ</strong> — Специальность: Финансы и кредит, экономист (2005)</div>
+      </div>
+      <div class="job-card" style="margin-bottom:0;">
+        <div><i class="fas fa-certificate"></i> <strong>ДипИФР (ACCA)</strong> — BDO, 2011. Подготовка к экзамену по МСФО.</div>
+        <div style="margin-top: 0.6rem;"><i class="fas fa-chalkboard-user"></i> <strong>Управление финансами коммерческой организации</strong> — Финансовая академия при Прав-ве РФ, 2010.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Навыки / языки / доп. инфо -->
+  <div style="margin-top: 2rem;">
+    <div class="section-title">Языки и дополнительные компетенции</div>
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; background: white; border-radius: 1.2rem; padding: 1.2rem 1.8rem;">
+      <div><i class="fas fa-language"></i> Русский — родной<br><i class="fas fa-language"></i> Английский — B2 (Upper Intermediate, деловая переписка)</div>
+      <div><i class="fas fa-car"></i> Права категории B, собственный автомобиль</div>
+      <div><i class="fas fa-user-check"></i> Не курю, готов к командировкам</div>
+    </div>
+  </div>
+
+  <!-- Рекомендации и дополнительная информация -->
+  <div>
+    <div class="section-title">Рекомендации</div>
+    <div class="tools-tag-cloud" style="margin-top: 0;">
+      <span class="tools-tag" style="background: #eaf6ff;">ООО "Си Ти Ай" — Полковникова Галина (гл. бухгалтер)</span>
+      <span class="tools-tag" style="background: #eaf6ff;">ООО "Славянская гостиница" — Толоконников Владимир</span>
+      <span class="tools-tag" style="background: #eaf6ff;">ООО "Евротраст-лизинг" — Соколова Оксана (ген. директор)</span>
+    </div>
+    <div class="info-row" style="margin-top: 1rem;">
+      <div class="info-item"><i class="fas fa-chart-line"></i> MBA Стратегический менеджмент, МГУ 2019</div>
+      <div class="info-item"><i class="fas fa-chart-pie"></i> Управление денежными потоками, бюджетирование БДР/БДДС, контроллинг</div>
+      <div class="info-item"><i class="fas fa-database"></i> Excel, SQL, Power BI, 1С, Axapta, банк-клиент системы</div>
+      <div class="info-item"><i class="fas fa-handshake"></i> Навыки работы с клиентами, выявление потребностей</div>
+    </div>
+  </div>
+
+  <footer>
+    <i class="fas fa-chart-simple"></i> Кирилин Игорь Александрович · Финансовый директор с 20+ летним опытом · Готов к новым вызовам
+  </footer>
+</div>
+</body>
+</html>
