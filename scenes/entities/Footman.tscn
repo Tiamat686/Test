@@ -11,3 +11,8 @@ Armor = 3
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 billboard = 1
+
+[node name="HPBar" type="MeshInstance3D" parent="."]
+position = Vector3(0,2,0)
+scale = Vector3(1,0.1,0.1)
+mesh = BoxMesh.new()
