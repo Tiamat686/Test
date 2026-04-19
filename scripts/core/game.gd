@@ -4,8 +4,8 @@ extends Node3D
 @onready var peasant = $Peasant
 @onready var mine = $GoldMine
 @onready var town = $TownHall
-@onready var footman = $Footman
-@onready var grunt = $Grunt
+
+var ability_mode = false
 
 func _ready():
 	print("Stonecraft Game started (3D mode)")
@@ -13,6 +13,10 @@ func _ready():
 	peasant.SetTownHall(town)
 
 func _input(event):
+	if event is InputEventKey and event.pressed:
+		if event.is_action_pressed("ability_primary"):
+			ability_mode = true
+
 	if event is InputEventMouseButton and event.pressed:
 		var ray_origin = camera.project_ray_origin(event.position)
 		var ray_dir = camera.project_ray_normal(event.position)
@@ -33,6 +37,11 @@ func _input(event):
 			if event.button_index == MOUSE_BUTTON_RIGHT:
 				var selected = SelectionManager.get_primary_selection()
 				if not selected:
+					return
+
+				if ability_mode and collider.get_parent() is CharacterBody3D:
+					selected.CastPrimaryAbilityOn(collider.get_parent())
+					ability_mode = false
 					return
 
 				if collider.get_parent() == mine and selected.has_method("Gather"):
