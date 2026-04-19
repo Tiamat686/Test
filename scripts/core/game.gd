@@ -7,6 +7,7 @@ extends Node3D
 @onready var footman = $Footman
 @onready var wizard = $Wizard
 @onready var ai = $AIController
+@onready var game_ui = $GameOverUI
 
 var ability_mode = false
 
@@ -21,6 +22,9 @@ func _process(delta):
 	check_game_state()
 
 func check_game_state():
+	if GameState.game_over:
+		return
+
 	var player_units_alive = false
 	var enemies_alive = false
 
@@ -33,9 +37,11 @@ func check_game_state():
 
 	if not player_units_alive:
 		GameState.lose()
+		game_ui.show_defeat()
 
 	if not enemies_alive:
 		GameState.win()
+		game_ui.show_victory()
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
