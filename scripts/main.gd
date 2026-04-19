@@ -32,5 +32,16 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
+		var click_pos = get_global_mouse_position()
+
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if worker.position.distance_to(click_pos) < 20:
+				selection_manager.select(worker)
+			else:
+				selection_manager.clear_selection()
+
 		if event.button_index == MOUSE_BUTTON_RIGHT:
-			worker.gather_from(gold_mine)
+			if gold_mine.position.distance_to(click_pos) < 30:
+				selection_manager.command_gather(gold_mine)
+			else:
+				selection_manager.command_move(click_pos)
