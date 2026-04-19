@@ -11,6 +11,9 @@ public partial class CombatUnit : CharacterBody3D
     [Export] public float AttackRange = 1.5f;
     [Export] public float AttackInterval = 1.0f;
 
+    [Export] public float AbilityCooldownTime = 5f;
+    protected float AbilityCooldown = 0f;
+
     protected float CurrentHp;
     protected Vector3 TargetPosition;
     protected bool Moving = false;
@@ -77,6 +80,9 @@ public partial class CombatUnit : CharacterBody3D
         if (AttackCooldown > 0)
             AttackCooldown -= (float)delta;
 
+        if (AbilityCooldown > 0)
+            AbilityCooldown -= (float)delta;
+
         if (AttackTargetUnit != null)
         {
             if (!GodotObject.IsInstanceValid(AttackTargetUnit))
@@ -125,6 +131,8 @@ public partial class CombatUnit : CharacterBody3D
 
     public virtual void CastPrimaryAbilityOn(CombatUnit target)
     {
+        if (AbilityCooldown > 0) return;
+        AbilityCooldown = AbilityCooldownTime;
         GD.Print($"{UnitName} ability placeholder on target");
     }
 }
