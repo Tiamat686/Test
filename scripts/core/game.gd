@@ -4,6 +4,8 @@ extends Node3D
 @onready var peasant = $Peasant
 @onready var mine = $GoldMine
 @onready var town = $TownHall
+@onready var footman = $Footman
+@onready var grunt = $Grunt
 
 func _ready():
 	print("Stonecraft Game started (3D mode)")
@@ -23,8 +25,8 @@ func _input(event):
 			var collider = result["collider"]
 
 			if event.button_index == MOUSE_BUTTON_LEFT:
-				if collider.get_parent() == peasant:
-					SelectionManager.select_single(peasant)
+				if collider.get_parent() is CharacterBody3D:
+					SelectionManager.select_single(collider.get_parent())
 				else:
 					SelectionManager.clear_selection()
 
@@ -33,7 +35,9 @@ func _input(event):
 				if not selected:
 					return
 
-				if collider.get_parent() == mine:
+				if collider.get_parent() == mine and selected.has_method("Gather"):
 					selected.Gather()
+				elif collider.get_parent() is CharacterBody3D:
+					selected.AttackTarget(collider.get_parent())
 				else:
 					selected.MoveTo(result["position"])
