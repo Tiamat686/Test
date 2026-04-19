@@ -11,6 +11,9 @@ public partial class CombatUnit : CharacterBody3D
     [Export] public float AttackRange = 1.5f;
     [Export] public float AttackInterval = 1.0f;
 
+    [Export] public bool IsRanged = false;
+    [Export] public PackedScene ProjectileScene;
+
     [Export] public float AbilityCooldownTime = 5f;
     protected float AbilityCooldown = 0f;
 
@@ -74,13 +77,6 @@ public partial class CombatUnit : CharacterBody3D
         tween.TweenCallback(Callable.From(() => QueueFree()));
     }
 
-    public virtual void OnSelectionChanged(bool selected)
-    {
-        var sprite = GetNodeOrNull<Sprite3D>("Sprite3D");
-        if (sprite != null)
-            sprite.Modulate = selected ? new Color(0, 1, 0) : new Color(1, 1, 1);
-    }
-
     public override void _PhysicsProcess(double delta)
     {
         if (IsDead) return;
@@ -105,9 +101,22 @@ public partial class CombatUnit : CharacterBody3D
                 Velocity = Vector3.Zero;
                 MoveAndSlide();
                 Moving = false;
+
                 if (AttackCooldown <= 0)
                 {
-                    AttackTargetUnit.TakeDamage(Damage);
+                    if (IsRanged && ProjectileScene != null)
+                    {
+                        var proj = ProjectileScene.Instantiate<Projectile>();
+                        proj.GlobalPosition = GlobalPosition + Vector3.Up;
+                        proj.Target = AttackTargetUnit;
+                        proj.Damage = Damage;
+                        GetTree().CurrentScene.AddChild(proj);
+                    }
+                    else
+                    {
+                        AttackTargetUnit.TakeDamage(Damage);
+                    }
+
                     AttackCooldown = AttackInterval;
                 }
                 return;
@@ -141,7 +150,6 @@ public partial class CombatUnit : CharacterBody3D
     {
         if (AbilityCooldown > 0) return;
         AbilityCooldown = AbilityCooldownTime;
-        GD.Print($"{UnitName} ability placeholder on target");
     }
 
     protected void UpdateHpBar()
