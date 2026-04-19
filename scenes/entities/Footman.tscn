@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/units/CombatUnit.cs" id="1"]
+
+[node name="Footman" type="CharacterBody3D"]
+script = ExtResource("1")
+UnitName = "Footman"
+Faction = "Human"
+Damage = 12
+Armor = 3
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
