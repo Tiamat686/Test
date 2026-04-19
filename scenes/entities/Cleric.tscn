@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/units/Cleric.cs" id="1"]
+
+[node name="Cleric" type="CharacterBody3D"]
+script = ExtResource("1")
+UnitName = "Cleric"
+Faction = "Human"
+Damage = 4
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
