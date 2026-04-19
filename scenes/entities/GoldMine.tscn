@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/buildings/gold_mine.gd" id="1"]
+
+[node name="GoldMine" type="Node3D"]
+script = ExtResource("1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = CylinderShape3D.new()
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = CylinderMesh.new()
+scale = Vector3(2, 1, 2)
