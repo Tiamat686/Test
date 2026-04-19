@@ -24,6 +24,7 @@ public partial class CombatUnit : CharacterBody3D
     public override void _Ready()
     {
         CurrentHp = MaxHp;
+        UpdateHpBar();
     }
 
     public virtual float GetCurrentHp() => CurrentHp;
@@ -48,6 +49,8 @@ public partial class CombatUnit : CharacterBody3D
         if (IsDead) return;
         float finalDamage = Mathf.Max(1f, rawDamage - Armor);
         CurrentHp -= finalDamage;
+        FlashHit(new Color(1, 0.35f, 0.35f));
+        UpdateHpBar();
         if (CurrentHp <= 0)
         {
             Die();
@@ -58,12 +61,17 @@ public partial class CombatUnit : CharacterBody3D
     {
         if (IsDead) return;
         CurrentHp = Mathf.Min(MaxHp, CurrentHp + amount);
+        FlashHit(new Color(0.35f, 1f, 0.35f));
+        UpdateHpBar();
     }
 
     public virtual void Die()
     {
         IsDead = true;
-        QueueFree();
+        SetPhysicsProcess(false);
+        var tween = CreateTween();
+        tween.TweenProperty(this, "scale", Vector3.Zero, 0.25f);
+        tween.TweenCallback(Callable.From(() => QueueFree()));
     }
 
     public virtual void OnSelectionChanged(bool selected)
@@ -134,5 +142,24 @@ public partial class CombatUnit : CharacterBody3D
         if (AbilityCooldown > 0) return;
         AbilityCooldown = AbilityCooldownTime;
         GD.Print($"{UnitName} ability placeholder on target");
+    }
+
+    protected void UpdateHpBar()
+    {
+        var hpBar = GetNodeOrNull<Node3D>("HPBar");
+        if (hpBar != null)
+        {
+            float ratio = Mathf.Clamp(CurrentHp / MaxHp, 0f, 1f);
+            hpBar.Scale = new Vector3(ratio, 1, 1);
+        }
+    }
+
+    protected void FlashHit(Color color)
+    {
+        var sprite = GetNodeOrNull<Sprite3D>("Sprite3D");
+        if (sprite == null) return;
+        sprite.Modulate = color;
+        var tween = CreateTween();
+        tween.TweenProperty(sprite, "modulate", new Color(1, 1, 1), 0.15f);
     }
 }
