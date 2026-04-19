@@ -17,6 +17,26 @@ func _ready():
 
 	ai.setup(self, footman)
 
+func _process(delta):
+	check_game_state()
+
+func check_game_state():
+	var player_units_alive = false
+	var enemies_alive = false
+
+	for child in get_children():
+		if child is CharacterBody3D:
+			if child.Faction == "Human":
+				player_units_alive = true
+			if child.Faction == "Orc":
+				enemies_alive = true
+
+	if not player_units_alive:
+		GameState.lose()
+
+	if not enemies_alive:
+		GameState.win()
+
 func _input(event):
 	if event is InputEventKey and event.pressed:
 		if event.is_action_pressed("ability_primary"):
