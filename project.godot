@@ -31,3 +31,4 @@ ability_primary={
 [autoload]
 ResourceManager="*res://scripts/autoload/resource_manager.gd"
 SelectionManager="*res://scripts/core/SelectionManager.gd"
+GameState="*res://scripts/core/GameState.gd"
