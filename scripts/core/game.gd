@@ -4,6 +4,9 @@ extends Node3D
 @onready var peasant = $Peasant
 @onready var mine = $GoldMine
 @onready var town = $TownHall
+@onready var footman = $Footman
+@onready var wizard = $Wizard
+@onready var ai = $AIController
 
 var ability_mode = false
 
@@ -11,6 +14,8 @@ func _ready():
 	print("Stonecraft Game started (3D mode)")
 	peasant.SetMine(mine)
 	peasant.SetTownHall(town)
+
+	ai.setup(self, footman)
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
