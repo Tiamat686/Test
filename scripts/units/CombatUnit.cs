@@ -23,6 +23,9 @@ public partial class CombatUnit : CharacterBody3D
         CurrentHp = MaxHp;
     }
 
+    public virtual float GetCurrentHp() => CurrentHp;
+    public virtual bool IsFriendlyTo(CombatUnit other) => other != null && other.Faction == Faction;
+
     public virtual void MoveTo(Vector3 pos)
     {
         TargetPosition = pos;
@@ -46,6 +49,12 @@ public partial class CombatUnit : CharacterBody3D
         {
             Die();
         }
+    }
+
+    public virtual void ReceiveHeal(float amount)
+    {
+        if (IsDead) return;
+        CurrentHp = Mathf.Min(MaxHp, CurrentHp + amount);
     }
 
     public virtual void Die()
@@ -114,8 +123,8 @@ public partial class CombatUnit : CharacterBody3D
         }
     }
 
-    public virtual void CastPrimaryAbility()
+    public virtual void CastPrimaryAbilityOn(CombatUnit target)
     {
-        GD.Print($"{UnitName} ability placeholder");
+        GD.Print($"{UnitName} ability placeholder on target");
     }
 }
