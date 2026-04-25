@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Оркский Рубеж — мини-RTS</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="frame">
+    <header>
+      <div class="title">Оркский Рубеж (в стиле Warcraft I)</div>
+      <div class="hud">
+        <div class="badge">Золото: <span id="gold">0</span></div>
+        <div class="badge">Пехота: <span id="soldiers">0</span></div>
+        <div class="badge">Волны: <span id="wave">0</span></div>
+        <div class="badge">База: <span id="baseHp">0</span></div>
+      </div>
+    </header>
+
+    <section class="battlefield-wrap">
+      <canvas id="game" width="1024" height="576"></canvas>
+    </section>
+
+    <section class="panel">
+      <div>
+        <div class="controls">
+          <button id="trainBtn">Нанять пехотинца (30)</button>
+          <button id="fortBtn">Укрепить базу (50)</button>
+          <button id="startBtn">Начать бой</button>
+          <button id="resetBtn">Новая игра</button>
+        </div>
+        <div class="hint">ЛКМ по карте — отправить выделенного пехотинца в точку. Цель: пережить волны и защитить крепость.</div>
+      </div>
+      <div class="log" id="log"></div>
+    </section>
+  </main>
+
+  <script src="./game.js"></script>
+</body>
+</html>
